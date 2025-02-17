@@ -2,9 +2,9 @@
 
 debug_on=1
 
-source $nx_fun_cli_root/.internal/apps/fun-cli/utils.sh
+source $nx_fun_cli_root/.internal/apps/s-cli/utils.sh
 
-fun_cli_main() {
+s_cli_main() {
   local script_path=$nx_fun_cli_root/userland/script
   local main_cmd="run $*"
   local user_input="$*"
