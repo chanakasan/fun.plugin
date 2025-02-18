@@ -4,7 +4,7 @@ s_cli_main() {
   local base_path=$HOME/scripts/userland
   find $base_path -type f -name "*.sh" -print | \
   nl | \
-  fzf --nth=2 --prompt "search scripts> " --header "user scripts" | \
+  fzf --nth=2 --prompt "search scripts> " | \
   awk '{ $1=""; print substr($0,2) }' | \
   xargs -I {} bash "{}"
 }

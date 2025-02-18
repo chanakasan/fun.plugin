@@ -10,7 +10,7 @@ h_cli_main() {
   cat ~/.bash_history | \
   nl | \
   tac | \
-  fzf --nth=2 --prompt "search command> " --header "history items" | \
+  fzf --nth=2 --prompt "search commands> " | \
   awk '{ $1=""; print substr($0,2) }' | \
   xargs -I {} bash -c "{}"
 }
