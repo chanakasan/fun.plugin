@@ -23,12 +23,12 @@ log() {
   if [ -z "$debug_on" ]; then
     return
   fi
-  echo "$*"
+  echo " $*"
 }
 
 dvar() {
   if [ -z "$debug_on" ]; then
     return
   fi
-  echo "$1: <${!1}>"
+  echo " $1: <${!1}>"
 }
