@@ -5,7 +5,7 @@ debug_on=1
 source $nx_fun_cli_root/.internal/apps/s-cli/utils.sh
 
 s_cli_main() {
-  local script_path=$nx_fun_cli_root/userland/script
+  local script_path=$HOME/userland/script
   local main_cmd="run $*"
   local user_input="$*"
   local normalized_key=$(create_key "$user_input")
@@ -25,7 +25,7 @@ create_key() {
 }
 
 run_script_if_found() {
-  local base_path=$nx_fun_cli_root/userland/script
+  local base_path=$HOME/userland/script
   if [ ! -d $base_path ]; then
     return 1
   fi
