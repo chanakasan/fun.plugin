@@ -1,9 +1,5 @@
 #!/bin/bash
 
-debug_on=1
-
-source $nx_fun_cli_root/.internal/apps/h-cli/utils.sh
-
 h_cli_main2() {
   tac ~/.bash_history | \
   fzf --reverse --height 50% | \

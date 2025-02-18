@@ -5,14 +5,14 @@ debug_on=1
 source $nx_fun_cli_root/.internal/apps/s-cli/utils.sh
 
 s_cli_main() {
-  local script_path=$HOME/userland/script
+  local script_base_path=$HOME/scripts/userland
   local main_cmd="run $*"
   local user_input="$*"
   local normalized_key=$(create_key "$user_input")
   log user_input: $user_input
   log normalized_key: $normalized_key
   exit_if_empty_args $1
-  run_script_if_found $normalized_key
+  run_script_if_found $script_base_path $normalized_key
   show_not_found
 }
 
@@ -25,12 +25,12 @@ create_key() {
 }
 
 run_script_if_found() {
-  local base_path=$HOME/userland/script
+  local base_path=$1
   if [ ! -d $base_path ]; then
     return 1
   fi
   build_files_index $base_path
-  local key="$1"
+  local key="$2"
   local file="${files_index[$key]}"
   log input key: $key
   log matched file: $file

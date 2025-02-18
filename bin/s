@@ -1,8 +1,12 @@
-#!/bin/bash
-
 set -e
 
-nx_fun_cli_root="$HOME/dotfiles/plugin/fun.plugin"
-source $nx_fun_cli_root/.internal/apps/s-cli/main.sh
+s_cli_main() {
+  local base_path=$HOME/scripts/userland
+  find $base_path -type f -name "*.sh" -print | \
+  nl | \
+  fzf --nth=2 --prompt "search scripts> " --header "user scripts" | \
+  awk '{ $1=""; print substr($0,2) }' | \
+  xargs -I {} bash "{}"
+}
 
 s_cli_main $@
