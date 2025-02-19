@@ -1,12 +1,33 @@
 set -e
 
 s_cli_main() {
-  local base_path=$HOME/scripts/userland
-  find $base_path -type f -name "*.sh" -print | \
-  nl | \
-  fzf --nth=2 --prompt "search scripts> " | \
-  awk '{ $1=""; print substr($0,2) }' | \
-  xargs -I {} bash "{}"
+  local result=$(get_result)
+  log "result: <$result>"
+  if [ -z "$result" ] || [ "$result" == "----" ]; then
+    echo "nothing to do"
+    exit 0
+  fi
+  log "running script: $result"
+  bash "$result"
 }
 
-s_cli_main $@
+get_result() {
+  local base_path=$HOME/scripts
+  local result="none"
+  find $base_path -type f -name "*.sh" -print | \
+  nl | \
+  (echo "----"; cat) | \
+  fzf --nth=2 --height 1 \
+    --prompt "search scripts> " | \
+  awk '{ $1=""; print substr($0,2) }'
+}
+
+log() {
+  local debug=on
+  if [ "$debug" != "on" ]; then
+    return
+  fi
+  echo "$*"
+}
+
+s_cli_main

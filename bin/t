@@ -1,6 +1,6 @@
 #!/bin/bash
 
-h_cli_main() {
+test_cli_main() {
   local result=$(get_result)
   echo "result: <$result>"
   if [ -z "$result" ] || [ "$result" == "--" ]; then
@@ -16,9 +16,11 @@ get_result() {
   cat ~/.bash_history | \
   nl | \
   tac | \
-  fzf --tmux \
-  --prompt "search history> " | \
+  (echo "----"; cat) | \
+  fzf --height 1 \
+    --prompt "search commands> " | \
   awk '{ $1=""; print substr($0,2) }'
+  # xargs -I {} echo "<{}>"
 }
 
-h_cli_main
+test_cli_main

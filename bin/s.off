@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-
-nx_fun_cli_root="$HOME/dotfiles/plugin/fun.plugin"
-source $nx_fun_cli_root/.internal/apps/s-cli/main.sh
-
-s_cli_main $@
