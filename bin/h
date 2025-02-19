@@ -1,5 +1,11 @@
 #!/bin/bash
 
+export FZF_DEFAULT_OPTS="--reverse \
+        --height 50% \
+        --pointer ▶ \
+        --marker ⇒"
+export FZF_TMUX_OPTS="-p"
+
 h_cli_main() {
   local result=$(get_result)
   echo "result: <$result>"
