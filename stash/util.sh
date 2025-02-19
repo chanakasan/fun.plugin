@@ -32,3 +32,10 @@ ends_with_plus() {
     return 1
   fi
 }
+
+dvar() {
+  if [ -z "$debug_on" ]; then
+    return
+  fi
+  echo " $1: <${!1}>"
+}

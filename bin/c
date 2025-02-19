@@ -1,17 +1,5 @@
 c_cli_main () {
-  local cmd_str=""
-  local n=1
-  local temp_cmd_str=""
-  
-  while [[ -z $cmd_str ]]; do
-    read -e -p "cmd: " cmd_str
-  done
-
-  while ! ends_with_endchar "$cmd_str"; do
-    read -e -p "$cmd_str: " input
-    # append new input
-    cmd_str="${cmd_str} ${input}"
-  done
+  local cmd_str="$(get_user_input)"
 
   if [[ -z $cmd_str ]]; then
     echo empty cmd str
@@ -21,7 +9,24 @@ c_cli_main () {
 
   command=$(format_cmd_str "$cmd_str")
   echo "running command: <$command>"
+  echo "---"
   $command
+}
+
+get_user_input() {
+  local output_str=""
+  while [[ -z $output_str ]]; do
+    read -e -p "cmd: " output_str
+  done
+
+  while ! ends_with_endchar "$output_str"; do
+    # read new input
+    read -e -p "$output_str: " input
+    # append new input
+    output_str="${output_str} ${input}"
+  done
+
+  echo $output_str
 }
 
 format_cmd_str() {

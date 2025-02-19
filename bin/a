@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-
-nx_fun_cli_root="$HOME/dotfiles/paks/fun-cli.pak"
-source $nx_fun_cli_root/internal/apps/a-cli/main.sh
-
-a_cli_main $@
