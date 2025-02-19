@@ -7,7 +7,8 @@ s_cli_main() {
     echo "nothing to do"
     exit 0
   fi
-  log "running script: $result"
+  echo "running script: $result"
+  echo "---"
   bash "$result"
 }
 
@@ -23,8 +24,8 @@ get_result() {
 }
 
 log() {
-  local debug=
-  if [ "$debug" != "on" ]; then
+  # local nxdebug=on
+  if [ "$nxdebug" != "on" ]; then
     return
   fi
   echo "$*"
