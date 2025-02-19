@@ -16,12 +16,12 @@ a_cli_main () {
 get_command_input() {
   local output_str=""
   while [[ -z $output_str ]]; do
-    read -e -p "cmd: " output_str
+    read -e -p "command: " output_str
   done
 
   while ! ends_with_endchar "$output_str"; do
     # read new input
-    read -e -p "$output_str: " input
+    read -e -p "command: $output_str: " input
     # append new input
     output_str="${output_str} ${input}"
   done
