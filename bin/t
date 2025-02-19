@@ -1,25 +1,9 @@
-#!/bin/bash
+valid_user_input() {
+  local invalid_chars=(x h c s)
 
-set -e
-
-echo test
-
-dvar() {
-  if [ -z "$debug" ]; then
-    return
-  fi
-  echo "$: <$${!1}>"
+  for char in "${invalid_chars[@]}"; do
+    echo "$char"
+  done
 }
 
-dvar() {
-  if [ -z "$debug" ]; then
-    return
-  fi
-  echo ": <${!1}>"
-}
-dvar() {
-  if [ -z "$debug" ]; then
-    return
-  fi
-  echo "$1: <${!1}>"
-}
+valid_user_input

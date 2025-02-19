@@ -1,5 +1,5 @@
 c_cli_main () {
-  local cmd_str="$(get_user_input)"
+  local cmd_str="$(get_command_input)"
 
   if [[ -z $cmd_str ]]; then
     echo empty cmd str
@@ -7,13 +7,12 @@ c_cli_main () {
     exit 0
   fi
 
-  command=$(format_cmd_str "$cmd_str")
-  echo "running command: <$command>"
+  echo "running command: <$cmd_str>"
   echo "---"
-  $command
+  $cmd_str
 }
 
-get_user_input() {
+get_command_input() {
   local output_str=""
   while [[ -z $output_str ]]; do
     read -e -p "cmd: " output_str
@@ -26,7 +25,8 @@ get_user_input() {
     output_str="${output_str} ${input}"
   done
 
-  echo $output_str
+  cmd_str=$(format_cmd_str "$output_str")
+  echo $cmd_str
 }
 
 format_cmd_str() {
