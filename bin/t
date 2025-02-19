@@ -1,26 +1,6 @@
 #!/bin/bash
 
-test_cli_main() {
-  local result=$(get_result)
-  echo "result: <$result>"
-  if [ -z "$result" ] || [ "$result" == "--" ]; then
-    echo "nothing to do"
-    exit 0
-  fi
-  echo "running:"
-  echo "$result"
-  bash -c "$result"
-}
+set -e
 
-get_result() {
-  cat ~/.bash_history | \
-  nl | \
-  tac | \
-  (echo "----"; cat) | \
-  fzf --height 1 \
-    --prompt "search commands> " | \
-  awk '{ $1=""; print substr($0,2) }'
-  # xargs -I {} echo "<{}>"
-}
+echo test
 
-test_cli_main

@@ -1,0 +1,52 @@
+c_cli_main () {
+  local cmd_str=""
+  local n=1
+  local temp_cmd_str=""
+  
+  while [[ -z $cmd_str ]]; do
+    read -e -p "cmd: " cmd_str
+  done
+
+  while ! ends_with_endchar "$cmd_str"; do
+    read -e -p "$cmd_str: " input
+    # append new input
+    cmd_str="${cmd_str} ${input}"
+  done
+
+  if [[ -z $cmd_str ]]; then
+    echo empty cmd str
+    echo nothing to do
+    exit 0
+  fi
+
+  command=$(format_cmd_str "$cmd_str")
+  echo "running command: <$command>"
+  $command
+}
+
+format_cmd_str() {
+  local output="$1"
+  output="${output%\`}"
+  output="${output%\\ \`}"
+  echo $output
+}
+
+ends_with_endchar() {
+  local str="$1"
+  if [[ "${str: -1}" == "\`" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+log() {
+  local debug=on
+  if [ "$debug" != "on" ]; then
+    # do nothing
+    :
+  fi
+  echo "$*"
+}
+
+c_cli_main

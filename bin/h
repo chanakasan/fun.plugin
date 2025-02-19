@@ -16,8 +16,8 @@ get_result() {
   cat ~/.bash_history | \
   nl | \
   tac | \
-  fzf --tmux \
-  --prompt "search history> " | \
+  fzf --bind 'esc:ignore' --tmux \
+    --prompt "search history> " | \
   awk '{ $1=""; print substr($0,2) }'
 }
 

@@ -3,6 +3,6 @@
 set -e
 
 nx_fun_cli_root="$HOME/dotfiles/plugin/fun.plugin"
-source $nx_fun_cli_root/.internal/apps/example-cli/main.sh
+source $nx_fun_cli_root/internal/apps/example-cli/main.sh
 
 example_cli_main $@
