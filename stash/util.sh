@@ -34,8 +34,8 @@ ends_with_plus() {
 }
 
 dvar() {
-  if [ -z "$debug_on" ]; then
+  if [ -z "$debug" ]; then
     return
   fi
-  echo " $1: <${!1}>"
+  echo "$1: <${!1}>"
 }

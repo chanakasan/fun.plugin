@@ -54,4 +54,11 @@ log() {
   echo "$*"
 }
 
+dumpvar() {
+  if [ -z "$debug" ]; then
+    return
+  fi
+  echo "$1: <${!1}>"
+}
+
 c_cli_main

@@ -4,3 +4,22 @@ set -e
 
 echo test
 
+dvar() {
+  if [ -z "$debug" ]; then
+    return
+  fi
+  echo "$: <$${!1}>"
+}
+
+dvar() {
+  if [ -z "$debug" ]; then
+    return
+  fi
+  echo ": <${!1}>"
+}
+dvar() {
+  if [ -z "$debug" ]; then
+    return
+  fi
+  echo "$1: <${!1}>"
+}
