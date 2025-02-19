@@ -1,4 +1,4 @@
-nx_fun_root="$HOME/dotfiles/plugin/fun.plugin"
+nx_fun_root="$HOME/dotfiles/paks/fun-cli.pak"
 
 export PATH=$PATH:$nx_fun_root/bin
 
