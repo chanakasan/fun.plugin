@@ -23,7 +23,7 @@ get_result() {
 }
 
 log() {
-  local debug=on
+  local debug=
   if [ "$debug" != "on" ]; then
     return
   fi
