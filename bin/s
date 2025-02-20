@@ -12,8 +12,17 @@ s_cli_main() {
   bash "$result"
 }
 
+get_base_path() {
+  local local_scripts_path="$(pwd)/local-scripts"
+  if [ -d "$local_scripts_path" ]; then
+    echo $local_scripts_path
+  else
+    echo $HOME/scripts
+  fi
+}
+
 get_result() {
-  local base_path=$HOME/scripts
+  local base_path="$(get_base_path)"
   local result="none"
   find $base_path -type f -name "*.sh" -print | \
   nl | \
