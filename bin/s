@@ -1,6 +1,11 @@
 set -e
 
 s_cli_main() {
+  local base_path=$(get_base_path)
+  if [ "$base_path" == "null" ]; then
+    echo "Either ./local-scripts or HOME/user-scripts not found"
+    exit 1
+  fi
   local result=$(get_result)
   log "result: <$result>"
   if [ -z "$result" ] || [ "$result" == "-----" ]; then
@@ -14,15 +19,17 @@ s_cli_main() {
 
 get_base_path() {
   local local_scripts_path="$(pwd)/local-scripts"
+  local user_scripts_path="$HOME/user-scripts"
   if [ -d "$local_scripts_path" ]; then
     echo $local_scripts_path
+  elif [ -d "$user_scripts_path" ]; then
+    echo $user_scripts_path
   else
-    echo $HOME/scripts
+    echo "null"
   fi
 }
 
 get_result() {
-  local base_path="$(get_base_path)"
   local result="none"
   find $base_path -type f -name "*.sh" -print | \
   nl | \
